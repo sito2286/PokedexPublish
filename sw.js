@@ -7,18 +7,19 @@ const CACHE_DYNAMIC_NAME = 'dynamic-v1';
 const CACHE_INMUTABLE_NAME = 'inmutable-v1';
 
 const APP_SHELL = [
-    'https://sito2286.github.io/PokedexPublish/',
-    'https://sito2286.github.io/PokedexPublish/BlazorPokedex.Client.styles.css',
-    'https://sito2286.github.io/PokedexPublish/_framework/blazor.boot.json',
-    'https://sito2286.github.io/PokedexPublish/_framework/blazor.webassembly.js',
-    'https://sito2286.github.io/PokedexPublish/_framework/dotnet.5.0.13.js',
-    'https://sito2286.github.io/PokedexPublish/css/app.css',
-    'https://sito2286.github.io/PokedexPublish/css/bootstrap/bootstrap.min.css',
-    'https://sito2286.github.io/PokedexPublish/css/open-iconic/font/css/open-iconic-bootstrap.min.css',
-    'https://sito2286.github.io/PokedexPublish/favicon.ico',
-    'https://sito2286.github.io/PokedexPublish/offLine.html',
-    'https://sito2286.github.io/PokedexPublish/js/app.js',
-    'https://sito2286.github.io/PokedexPublish/js/sw-utils.js'
+    '/PokedexPublish/',
+    '/PokedexPublish/BlazorPokedex.Client.styles.css',
+    '/PokedexPublish/_framework/blazor.boot.json',
+    '/PokedexPublish/_framework/blazor.webassembly.js',
+    '/PokedexPublish/_framework/dotnet.5.0.13.js',
+    '/PokedexPublish/css/app.css',
+    '/PokedexPublish/css/bootstrap/bootstrap.min.css',
+    '/PokedexPublish/css/open-iconic/font/css/open-iconic-bootstrap.min.css',
+    '/PokedexPublish/favicon.ico',
+    '/PokedexPublish/offLine.html',
+    '/PokedexPublish/js/decode.js',
+    '/PokedexPublish/js/app.js',
+    '/PokedexPublish/js/sw-utils.js'
 ];
 
 function limpiarCache(cacheName, numeroItems) {
