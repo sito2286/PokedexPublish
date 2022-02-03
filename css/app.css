@@ -1,0 +1,164 @@
+﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+
+html, body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+a, .btn-link {
+    color: #0366d6;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.content {
+    padding-top: 1.1rem;
+}
+
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+}
+
+.invalid {
+    outline: 1px solid red;
+}
+
+.validation-message {
+    color: red;
+}
+
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+    #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }
+
+.bg {
+    position: relative;
+    margin: 5px;
+}
+
+.bg-normal {
+    background-color: #A8A77A;
+    color: #fff;
+}
+
+.bg-fire {
+    background-color: #EE8130;
+    color: #fff;
+}
+
+.bg-water {
+    background-color: #6390F0;
+    color: #fff;
+}
+
+.bg-electric {
+    background-color: #F7D02C;
+    color: #fff;
+}
+
+.bg-grass {
+    background-color: #7AC74C;
+    color: #fff;
+}
+
+.bg-ice {
+    background-color: #96D9D6;
+    color: #fff;
+}
+
+.bg-fighting {
+    background-color: #C22E28;
+    color: #fff;
+}
+
+.bg-poison {
+    background-color: #A33EA1;
+    color: #fff;
+}
+
+.bg-ground {
+    background-color: #E2BF65;
+    color: #fff;
+}
+
+.bg-flying {
+    background-color: #A98FF3;
+    color: #fff;
+}
+
+.bg-psychic {
+    background-color: #F95587;
+    color: #fff;
+}
+
+.bg-bug {
+    background-color: #A6B91A;
+    color: #fff;
+}
+
+.bg-rock {
+    background-color: #B6A136;
+    color: #fff;
+}
+
+.bg-ghost, .bg-shadow {
+    background-color: #735797;
+    color: #fff;
+}
+
+.bg-dragon {
+    background-color: #6F35FC;
+    color: #fff;
+}
+
+.bg-dark {
+    background-color: #705746;
+    color: #fff;
+}
+
+.bg-steel {
+    background-color: #B7B7CE;
+    color: #fff;
+}
+
+.bg-fairy {
+    background-color: #D685AD;
+    color: #fff;
+}
+
+.bg-unknown {
+    background-color: #aaa;
+    color: #fff;
+}
+
+.pokeCard {
+    margin:5px;
+    width:15%;
+    text-align:center;
+}
+
+.row-align {
+    text-align:center;
+}
+
+.moreinfo {
+    padding-bottom:10px;
+}
