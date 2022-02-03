@@ -7,18 +7,18 @@ const CACHE_DYNAMIC_NAME = 'dynamic-v1';
 const CACHE_INMUTABLE_NAME = 'inmutable-v1';
 
 const APP_SHELL = [
-    '/2---BlazorPokedex/',
-    '/2---BlazorPokedex/BlazorPokedex.Client.styles.css',
-    '/2---BlazorPokedex/_framework/blazor.boot.json',
-    '/2---BlazorPokedex/_framework/blazor.webassembly.js',
-    '/2---BlazorPokedex/_framework/dotnet.5.0.13.js',
-    '/2---BlazorPokedex/css/app.css',
-    '/2---BlazorPokedex/css/bootstrap/bootstrap.min.css',
-    '/2---BlazorPokedex/css/open-iconic/font/css/open-iconic-bootstrap.min.css',
-    '/2---BlazorPokedex/favicon.ico',
-    '/2---BlazorPokedex/offLine.html',
-    '/2---BlazorPokedex/js/app.js',
-    '/2---BlazorPokedex/js/sw-utils.js'
+    '/PokedexPublish/',
+    '/PokedexPublish/BlazorPokedex.Client.styles.css',
+    '/PokedexPublish/_framework/blazor.boot.json',
+    '/PokedexPublish/_framework/blazor.webassembly.js',
+    '/PokedexPublish/_framework/dotnet.5.0.13.js',
+    '/PokedexPublish/css/app.css',
+    '/PokedexPublish/css/bootstrap/bootstrap.min.css',
+    '/PokedexPublish/css/open-iconic/font/css/open-iconic-bootstrap.min.css',
+    '/PokedexPublish/favicon.ico',
+    '/PokedexPublish/offLine.html',
+    '/PokedexPublish/js/app.js',
+    '/PokedexPublish/js/sw-utils.js'
 ];
 
 function limpiarCache(cacheName, numeroItems) {
