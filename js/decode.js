@@ -1,49 +1,49 @@
-﻿/* Copyright 2017 Google Inc. Todos los derechos reservados.
+﻿/* Copyright 2017 Google Inc. All Rights Reserved.
 
-   Distribuido bajo licencia MIT.
-   Consulte el archivo LICENCIA para obtener detalles o una copia en https://opensource.org/licenses/MIT
+   Distributed under MIT license.
+   See file LICENSE for detail or copy at https://opensource.org/licenses/MIT
 */
 
 /**
- * @typedef {Objeto} Opciones
- * @property {?Int8Array} diccionario personalizado
+ * @typedef {Object} Options
+ * @property {?Int8Array} customDictionary
  */
-dejar Opciones;
+let Options;
 
 /**
- * Alcance privado / inicializador estático para decodificador.
+ * Private scope / static initializer for decoder.
  *
- * @return {función(!Int8Array, Opciones=):!Int8Array}
+ * @return {function(!Int8Array, Options=):!Int8Array}
  */
 let makeBrotliDecode = () => {
     /**
      * @constructor
      * @param {!Int8Array} bytes
-     * @estructura
+     * @struct
      */
-    función Flujo de entrada(bytes) {
-        /** @tipo {!Int8Array} */
-        esto.datos = bytes;
-        /** @teclea un número} */
-        este.desplazamiento = 0;
+    function InputStream(bytes) {
+        /** @type {!Int8Array} */
+        this.data = bytes;
+        /** @type {!number} */
+        this.offset = 0;
     }
 
-    /* INICIO DEL CÓDIGO GENERADO */
-    /** @tipo {!Int32Array} */
-    sea ​​MAX_HUFFMAN_TABLE_SIZE = Int32Array.from([256, 402, 436, 468, 500, 534, 566, 598, 630, 662, 694, 726, 758, 790, 822, 854, 886, 920, 952, 984, 101, 1048, 1080]);
-    /** @tipo {!Int32Array} */
+    /* GENERATED CODE BEGIN */
+    /** @type {!Int32Array} */
+    let MAX_HUFFMAN_TABLE_SIZE = Int32Array.from([256, 402, 436, 468, 500, 534, 566, 598, 630, 662, 694, 726, 758, 790, 822, 854, 886, 920, 952, 984, 1016, 1048, 1080]);
+    /** @type {!Int32Array} */
     let CODE_LENGTH_CODE_ORDER = Int32Array.from([1, 2, 3, 4, 0, 5, 17, 6, 16, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
-    /** @tipo {!Int32Array} */
+    /** @type {!Int32Array} */
     let DISTANCE_SHORT_CODE_INDEX_OFFSET = Int32Array.from([0, 3, 2, 1, 0, 0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3]);
-    /** @tipo {!Int32Array} */
+    /** @type {!Int32Array} */
     let DISTANCE_SHORT_CODE_VALUE_OFFSET = Int32Array.from([0, 0, 0, 0, -1, 1, -2, 2, -3, 3, -1, 1, -2, 2, -3, 3]);
-    /** @tipo {!Int32Array} */
-    Sea fijo_table = int32array.desfrom([0x020000, 0x020004, 0x020003, 0x030002, 0x020000, 0x020004, 0x020003, 0x040001, 0x020000, 0x020004, 0x020003, 0x030002, 0x020000, 0x020004, 0x020003, 0x020003, 0x040005]);
-    /** @tipo {!Int32Array} */
+    /** @type {!Int32Array} */
+    let FIXED_TABLE = Int32Array.from([0x020000, 0x020004, 0x020003, 0x030002, 0x020000, 0x020004, 0x020003, 0x040001, 0x020000, 0x020004, 0x020003, 0x030002, 0x020000, 0x020004, 0x020003, 0x040005]);
+    /** @type {!Int32Array} */
     let BLOCK_LENGTH_OFFSET = Int32Array.from([1, 5, 9, 13, 17, 25, 33, 41, 49, 65, 81, 97, 113, 145, 177, 209, 241, 305, 369, 497, 753, 1265, 2289, 4337, 8433, 16625]);
-    /** @tipo {!Int32Array} */
+    /** @type {!Int32Array} */
     let BLOCK_LENGTH_N_BITS = Int32Array.from([2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 7, 8, 9, 10, 11, 12, 13, 24]);
-    /** @tipo {!Int16Array} */
+    /** @type {!Int16Array} */
     let INSERT_LENGTH_N_BITS = Int16Array.from([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x01, 0x02, 0x02, 0x03, 0x03, 0x04, 0x04, 0x05, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0C, 0x0E, 0x18]);
     /** @type {!Int16Array} */
     let COPY_LENGTH_N_BITS = Int16Array.from([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x01, 0x02, 0x02, 0x03, 0x03, 0x04, 0x04, 0x05, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x18]);
@@ -69,28 +69,28 @@ let makeBrotliDecode = () => {
         return result + i;
     }
     /**
-     * @param {número} npostfix
-     * @param {número} directo
-     * @param {número} maxndistbits
-     * @return {número}
+     * @param {number} npostfix
+     * @param {number} ndirect
+     * @param {number} maxndistbits
+     * @return {number}
      */
-    function calcularDistanceAlphabetSize(npostfix, ndirect, maxndistbits) {
+    function calculateDistanceAlphabetSize(npostfix, ndirect, maxndistbits) {
         return 16 + ndirect + 2 * (maxndistbits << npostfix);
     }
     /**
-     * @param {número} maxDistance
-     * @param {número} npostfix
-     * @param {número} directo
-     * @return {número}
+     * @param {number} maxDistance
+     * @param {number} npostfix
+     * @param {number} ndirect
+     * @return {number}
      */
-    function calcularDistanceAlphabetLimit(maxDistance, npostfix, ndirect) {
+    function calculateDistanceAlphabetLimit(maxDistance, npostfix, ndirect) {
         if (maxDistance < ndirect + (2 << npostfix)) {
-            throw "maxDistance es demasiado pequeño";
+            throw "maxDistance is too small";
         }
         let /** @type{number} */ offset = ((maxDistance - ndirect) >> npostfix) + 4;
-        let /** @type{número} */ ndistbits = log2floor(offset) - 1;
-        let /** @type{número} */ grupo = ((ndistbits - 1) << 1) | ((desplazamiento >> ndistbits) & 1);
-        return ((grupo - 1) << npostfix) + (1 << npostfix) + ndirect + 16;
+        let /** @type{number} */ ndistbits = log2floor(offset) - 1;
+        let /** @type{number} */ group = ((ndistbits - 1) << 1) | ((offset >> ndistbits) & 1);
+        return ((group - 1) << npostfix) + (1 << npostfix) + ndirect + 16;
     }
     /**
      * @param {!Int16Array} cmdLookup
@@ -111,84 +111,84 @@ let makeBrotliDecode = () => {
                 rangeIdx -= 2;
                 distanceContextOffset = 0;
             }
-            let /** @type{number} */ insertCode = (((0x29850 >>> (rangeIdx * 2)) & 0x3) << 3) | ((códigocmd >>> 3) & 7);
-            let /** @type{number} */ copyCode = (((0x26244 >>> (rangeIdx * 2)) & 0x3) << 3) | (código cmd y 7);
-            let /** @type{número} */ copyLengthOffset = copyLengthOffsets[copyCode];
-            let /** @type{número} */ distanciaContexto = distanciaContextOffset + (copyLengthOffset > 4 ? 3 : copyLengthOffset - 2);
-            let /** @type{número} */ index = cmdCode * 4;
-            cmdLookup[índice + 0] = (INSERT_LENGTH_N_BITS[insertCode] | (COPY_LENGTH_N_BITS[copyCode] << 8));
-            cmdLookup[índice + 1] = insertLengthOffsets[insertCode];
-            cmdLookup[índice + 2] = copyLengthOffsets[copyCode];
-            cmdLookup[índice + 3] = distanciaContexto;
+            let /** @type{number} */ insertCode = (((0x29850 >>> (rangeIdx * 2)) & 0x3) << 3) | ((cmdCode >>> 3) & 7);
+            let /** @type{number} */ copyCode = (((0x26244 >>> (rangeIdx * 2)) & 0x3) << 3) | (cmdCode & 7);
+            let /** @type{number} */ copyLengthOffset = copyLengthOffsets[copyCode];
+            let /** @type{number} */ distanceContext = distanceContextOffset + (copyLengthOffset > 4 ? 3 : copyLengthOffset - 2);
+            let /** @type{number} */ index = cmdCode * 4;
+            cmdLookup[index + 0] = (INSERT_LENGTH_N_BITS[insertCode] | (COPY_LENGTH_N_BITS[copyCode] << 8));
+            cmdLookup[index + 1] = insertLengthOffsets[insertCode];
+            cmdLookup[index + 2] = copyLengthOffsets[copyCode];
+            cmdLookup[index + 3] = distanceContext;
         }
     }
     /**
-     * @param {!Estado} s
-     * @return {número}
+     * @param {!State} s
+     * @return {number}
      */
-    función decodificarBitsVentana(s) {
+    function decodeWindowBits(s) {
         let /** @type{number} */ largeWindowEnabled = s.isLargeWindow;
         s.isLargeWindow = 0;
         if (s.bitOffset >= 16) {
-            s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.acumulador32 >>> 16);
+            s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.accumulator32 >>> 16);
             s.bitOffset -= 16;
         }
-        if (leerPocosBits(s, 1) == 0) {
-            volver 16;
+        if (readFewBits(s, 1) == 0) {
+            return 16;
         }
-        let /** @type{número} */ n = leerPocosBits(s, 3);
-        si(n != 0) {
-            devuelve 17 + n;
+        let /** @type{number} */ n = readFewBits(s, 3);
+        if (n != 0) {
+            return 17 + n;
         }
-        n = leerPocosBits(s, 3);
-        si(n != 0) {
-            si(n == 1) {
-                if (ventanagrandeHabilitada == 0) {
-                    devolver - 1;
+        n = readFewBits(s, 3);
+        if (n != 0) {
+            if (n == 1) {
+                if (largeWindowEnabled == 0) {
+                    return -1;
                 }
                 s.isLargeWindow = 1;
-                if (leerPocosBits(s, 1) == 1) {
-                    devolver - 1;
+                if (readFewBits(s, 1) == 1) {
+                    return -1;
                 }
-                n = leerPocosBits(s, 6);
-                si(n < 10 || n > 30) {
-                    devolver - 1;
+                n = readFewBits(s, 6);
+                if (n < 10 || n > 30) {
+                    return -1;
                 }
-                devolver n;
-            } demás {
-                devuelve 8 + n;
+                return n;
+            } else {
+                return 8 + n;
             }
         }
-        volver 17;
+        return 17;
     }
     /**
-     * @param {!Estado} s
-     * @return {vacío}
+     * @param {!State} s
+     * @return {void}
      */
-    función enableEagerOutput(s) {
-        if (en estado de ejecución! = 1) {
-            throw "El estado DEBE estar recién inicializado";
+    function enableEagerOutput(s) {
+        if (s.runningState != 1) {
+            throw "State MUST be freshly initialized";
         }
         s.isEager = 1;
     }
     /**
-     * @param {!Estado} s
-     * @return {vacío}
+     * @param {!State} s
+     * @return {void}
      */
-    función enableLargeWindow(s) {
-        if (en estado de ejecución! = 1) {
-            throw "El estado DEBE estar recién inicializado";
+    function enableLargeWindow(s) {
+        if (s.runningState != 1) {
+            throw "State MUST be freshly initialized";
         }
         s.isLargeWindow = 1;
     }
     /**
-     * @param {!Estado} s
-     * @param {!Int8Array} datos
-     * @return {vacío}
+     * @param {!State} s
+     * @param {!Int8Array} data
+     * @return {void}
      */
-    función adjuntarChunkDiccionario(s, datos) {
-        if (en estado de ejecución! = 1) {
-            throw "El estado DEBE estar recién inicializado";
+    function attachDictionaryChunk(s, data) {
+        if (s.runningState != 1) {
+            throw "State MUST be freshly initialized";
         }
         if (s.cdNumChunks == 0) {
             s.cdChunks = new Array(16);
@@ -196,21 +196,21 @@ let makeBrotliDecode = () => {
             s.cdBlockBits = -1;
         }
         if (s.cdNumChunks == 15) {
-            throw "Demasiados fragmentos de diccionario";
+            throw "Too many dictionary chunks";
         }
-        s.cdChunks[s.cdNumChunks] = datos;
+        s.cdChunks[s.cdNumChunks] = data;
         s.cdNumChunks++;
         s.cdTotalSize += data.length;
         s.cdChunkOffsets[s.cdNumChunks] = s.cdTotalSize;
     }
     /**
-     * @param {!Estado} s
-     * @param {!InputStream} entrada
-     * @return {vacío}
+     * @param {!State} s
+     * @param {!InputStream} input
+     * @return {void}
      */
-    function initState(s, entrada) {
-        if (en estado de ejecución! = 0) {
-            throw "El estado DEBE no estar inicializado";
+    function initState(s, input) {
+        if (s.runningState != 0) {
+            throw "State MUST be uninitialized";
         }
         s.blockTrees = new Int32Array(3091);
         s.blockTrees[0] = 7;
@@ -245,63 +245,63 @@ let makeBrotliDecode = () => {
      */
     function decodeVarLenUnsignedByte(s) {
         if (s.bitOffset >= 16) {
-            s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.acumulador32 >>> 16);
+            s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.accumulator32 >>> 16);
             s.bitOffset -= 16;
         }
-        if (leerPocosBits(s, 1) != 0) {
-            let /** @type{número} */ n = leerPocosBits(s, 3);
-            si(n == 0) {
-                devolver 1;
-            } demás {
-                devuelve leerPocosBits(s, n) + (1 << n);
+        if (readFewBits(s, 1) != 0) {
+            let /** @type{number} */ n = readFewBits(s, 3);
+            if (n == 0) {
+                return 1;
+            } else {
+                return readFewBits(s, n) + (1 << n);
             }
         }
-        devolver 0;
+        return 0;
     }
     /**
-     * @param {!Estado} s
-     * @return {vacío}
+     * @param {!State} s
+     * @return {void}
      */
-    function decodificarMetaBlockLength(s) {
+    function decodeMetaBlockLength(s) {
         if (s.bitOffset >= 16) {
-            s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.acumulador32 >>> 16);
+            s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.accumulator32 >>> 16);
             s.bitOffset -= 16;
         }
-        s.inputEnd = leerPocosBits(s, 1);
+        s.inputEnd = readFewBits(s, 1);
         s.metaBlockLength = 0;
         s.isUncompressed = 0;
         s.isMetadata = 0;
         if ((s.inputEnd != 0) && readFewBits(s, 1) != 0) {
-            regreso;
+            return;
         }
         let /** @type{number} */ sizeNibbles = readFewBits(s, 2) + 4;
-        if (tamañoNibbles == 7) {
+        if (sizeNibbles == 7) {
             s.isMetadata = 1;
-            if (leerPocosBits(s, 1) != 0) {
-                throw "Bit reservado corrupto";
+            if (readFewBits(s, 1) != 0) {
+                throw "Corrupted reserved bit";
             }
             let /** @type{number} */ sizeBytes = readFewBits(s, 2);
-            si(tamañoBytes == 0) {
-                regreso;
+            if (sizeBytes == 0) {
+                return;
             }
             for (let /** @type{number} */ i = 0; i < sizeBytes; i++) {
                 if (s.bitOffset >= 16) {
-                    s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.acumulador32 >>> 16);
+                    s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.accumulator32 >>> 16);
                     s.bitOffset -= 16;
                 }
-                let /** @type{número} */ bits = leerPocosBits(s, 8);
-                si(bits == 0 && i + 1 == tamañoBytes && tamañoBytes > 1) {
-                    lanzar "Mordisco exuberante";
+                let /** @type{number} */ bits = readFewBits(s, 8);
+                if (bits == 0 && i + 1 == sizeBytes && sizeBytes > 1) {
+                    throw "Exuberant nibble";
                 }
                 s.metaBlockLength |= bits << (i * 8);
             }
-        } demás {
+        } else {
             for (let /** @type{number} */ i = 0; i < sizeNibbles; i++) {
                 if (s.bitOffset >= 16) {
-                    s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.acumulador32 >>> 16);
+                    s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.accumulator32 >>> 16);
                     s.bitOffset -= 16;
                 }
-                let /** @type{número} */ bits = leerPocosBits(s, 4);
+                let /** @type{number} */ bits = readFewBits(s, 4);
                 if (bits == 0 && i + 1 == sizeNibbles && sizeNibbles > 4) {
                     throw "Exuberant nibble";
                 }
@@ -329,83 +329,83 @@ let makeBrotliDecode = () => {
             s.bitOffset += bits;
             return sym;
         }
-        desplazamiento += sim;
-        let /** @type{número} */ máscara = (1 << bits) - 1;
-        desplazamiento += (valor y máscara) >>> 8;
+        offset += sym;
+        let /** @type{number} */ mask = (1 << bits) - 1;
+        offset += (val & mask) >>> 8;
         s.bitOffset += ((tableGroup[offset] >> 16) + 8);
-        volver tableGroup[desplazamiento] & 0xFFFF;
+        return tableGroup[offset] & 0xFFFF;
     }
     /**
-     * @param {!Int32Array} grupo de tablas
-     * @param {número} tableIdx
-     * @param {!Estado} s
-     * @return {número}
+     * @param {!Int32Array} tableGroup
+     * @param {number} tableIdx
+     * @param {!State} s
+     * @return {number}
      */
-    función leerBlockLength(tableGroup, tableIdx, s) {
+    function readBlockLength(tableGroup, tableIdx, s) {
         if (s.bitOffset >= 16) {
-            s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.acumulador32 >>> 16);
+            s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.accumulator32 >>> 16);
             s.bitOffset -= 16;
         }
         let /** @type{number} */ code = readSymbol(tableGroup, tableIdx, s);
-        let /** @type{número} */ n = BLOCK_LENGTH_N_BITS[código];
+        let /** @type{number} */ n = BLOCK_LENGTH_N_BITS[code];
         if (s.bitOffset >= 16) {
-            s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.acumulador32 >>> 16);
+            s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.accumulator32 >>> 16);
             s.bitOffset -= 16;
         }
-        return BLOCK_LENGTH_OFFSET[código] + ((n <= 16) ? readFewBits(s, n) : readManyBits(s, n));
+        return BLOCK_LENGTH_OFFSET[code] + ((n <= 16) ? readFewBits(s, n) : readManyBits(s, n));
     }
     /**
-     * @param {!Int32Array}v
-     * @param {número} índice
-     * @return {vacío}
+     * @param {!Int32Array} v
+     * @param {number} index
+     * @return {void}
      */
-    función moverAlFrente(v, índice) {
-        let /** @tipo{número} */ valor = v[índice];
-        para(; índice > 0; índice--) {
-            v[índice] = v[índice - 1];
+    function moveToFront(v, index) {
+        let /** @type{number} */ value = v[index];
+        for (; index > 0; index--) {
+            v[index] = v[index - 1];
         }
-        v[0] = valor;
+        v[0] = value;
     }
     /**
-     * @param {!Int8Array}v
-     * @param {número} vLen
-     * @return {vacío}
+     * @param {!Int8Array} v
+     * @param {number} vLen
+     * @return {void}
      */
-    función inversaMoveToFrontTransform(v, vLen) {
+    function inverseMoveToFrontTransform(v, vLen) {
         let /** @type{!Int32Array} */ mtf = new Int32Array(256);
-        for (let /** @type{número} */ i = 0; i < 256; i++) {
-            mtf[i] = yo;
+        for (let /** @type{number} */ i = 0; i < 256; i++) {
+            mtf[i] = i;
         }
         for (let /** @type{number} */ i = 0; i < vLen; i++) {
-            let /** @type{número} */ index = v[i] & 0xFF;
-            v[i] = mtf[índice];
-            si(índice != 0) {
-                moveToFront(mtf, índice);
+            let /** @type{number} */ index = v[i] & 0xFF;
+            v[i] = mtf[index];
+            if (index != 0) {
+                moveToFront(mtf, index);
             }
         }
     }
     /**
-     * @param {!Int32Array} códigoLengthCodeLengths
-     * @param {número} númSímbolos
-     * @param {!Int32Array} longitudes de código
-     * @param {!Estado} s
-     * @return {vacío}
+     * @param {!Int32Array} codeLengthCodeLengths
+     * @param {number} numSymbols
+     * @param {!Int32Array} codeLengths
+     * @param {!State} s
+     * @return {void}
      */
     function readHuffmanCodeLengths(codeLengthCodeLengths, numSymbols, codeLengths, s) {
-        let /** @type{número} */ símbolo = 0;
-        let /** @type{número} */ prevCodeLen = 8;
-        let /** @type{número} */ repetir = 0;
+        let /** @type{number} */ symbol = 0;
+        let /** @type{number} */ prevCodeLen = 8;
+        let /** @type{number} */ repeat = 0;
         let /** @type{number} */ repeatCodeLen = 0;
-        let /** @type{número} */ espacio = 32768;
-        let /** @type{!Int32Array} */ tabla = new Int32Array(32 + 1);
-        let /** @type{número} */ tableIdx = table.length - 1;
+        let /** @type{number} */ space = 32768;
+        let /** @type{!Int32Array} */ table = new Int32Array(32 + 1);
+        let /** @type{number} */ tableIdx = table.length - 1;
         buildHuffmanTable(table, tableIdx, 5, codeLengthCodeLengths, 18);
-        while (símbolo < numSymbols && espacio > 0) {
+        while (symbol < numSymbols && space > 0) {
             if (s.halfOffset > 2030) {
                 doReadMoreInput(s);
             }
             if (s.bitOffset >= 16) {
-                s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.acumulador32 >>> 16);
+                s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.accumulator32 >>> 16);
                 s.bitOffset -= 16;
             }
             let /** @type{number} */ p = (s.accumulator32 >>> s.bitOffset) & 31;
@@ -434,54 +434,54 @@ let makeBrotliDecode = () => {
                     repeat <<= extraBits;
                 }
                 if (s.bitOffset >= 16) {
-                    s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.acumulador32 >>> 16);
+                    s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.accumulator32 >>> 16);
                     s.bitOffset -= 16;
                 }
-                repetir += leerPocosBits(s, extraBits) + 3;
-                let /** @type{number} */ repeatDelta = repetir - oldRepeat;
-                if (símbolo + repetirDelta > numSymbols) {
-                    throw "símbolo + repetirDelta > numSymbols";
+                repeat += readFewBits(s, extraBits) + 3;
+                let /** @type{number} */ repeatDelta = repeat - oldRepeat;
+                if (symbol + repeatDelta > numSymbols) {
+                    throw "symbol + repeatDelta > numSymbols";
                 }
-                for (let /** @type{number} */ i = 0; i < repetirDelta; i++) {
-                    codeLengths[símbolo++] = repetirCodeLen;
+                for (let /** @type{number} */ i = 0; i < repeatDelta; i++) {
+                    codeLengths[symbol++] = repeatCodeLen;
                 }
-                if (repetirCodigoLen != 0) {
-                    espacio -= repetirDelta << (15 - repetirCodigoLen);
+                if (repeatCodeLen != 0) {
+                    space -= repeatDelta << (15 - repeatCodeLen);
                 }
             }
         }
-        si(espacio != 0) {
-            lanzar "Espacio no utilizado";
+        if (space != 0) {
+            throw "Unused space";
         }
-        codeLengths.fill(0, símbolo, númSímbolos);
+        codeLengths.fill(0, symbol, numSymbols);
     }
     /**
-     * @param {!Int32Array} símbolos
-     * @param {número} longitud
-     * @return {vacío}
+     * @param {!Int32Array} symbols
+     * @param {number} length
+     * @return {void}
      */
-    función checkDupes(símbolos, longitud) {
-        for (let /** @type{number} */ i = 0; i < longitud - 1; ++i) {
-            for (let /** @type{número} */ j = i + 1; j < longitud; ++j) {
-                if (símbolos[i] == símbolos[j]) {
-                    throw "Símbolo de código Huffman simple duplicado";
+    function checkDupes(symbols, length) {
+        for (let /** @type{number} */ i = 0; i < length - 1; ++i) {
+            for (let /** @type{number} */ j = i + 1; j < length; ++j) {
+                if (symbols[i] == symbols[j]) {
+                    throw "Duplicate simple Huffman code symbol";
                 }
             }
         }
     }
     /**
-     * @param {número} tamaño alfabético máx.
-     * @param {número} límite de tamaño alfabético
-     * @param {!Int32Array} grupo de tablas
-     * @param {número} tableIdx
-     * @param {!Estado} s
-     * @return {número}
+     * @param {number} alphabetSizeMax
+     * @param {number} alphabetSizeLimit
+     * @param {!Int32Array} tableGroup
+     * @param {number} tableIdx
+     * @param {!State} s
+     * @return {number}
      */
     function readSimpleHuffmanCode(alphabetSizeMax, alphabetSizeLimit, tableGroup, tableIdx, s) {
         let /** @type{!Int32Array} */ codeLengths = new Int32Array(alphabetSizeLimit);
-        let /** @type{!Int32Array} */ símbolos = new Int32Array(4);
-        let /** @type{número} */ maxBits = 1 + log2floor(alphabetSizeMax - 1);
-        let /** @type{número} */ numSymbols = leerPocosBits(s, 2) + 1;
+        let /** @type{!Int32Array} */ symbols = new Int32Array(4);
+        let /** @type{number} */ maxBits = 1 + log2floor(alphabetSizeMax - 1);
+        let /** @type{number} */ numSymbols = readFewBits(s, 2) + 1;
         for (let /** @type{number} */ i = 0; i < numSymbols; i++) {
             if (s.bitOffset >= 16) {
                 s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.accumulator32 >>> 16);
@@ -512,114 +512,114 @@ let makeBrotliDecode = () => {
                 codeLengths[symbols[2]] = 2;
                 break;
             case 4:
-                codeLengths[símbolos[0]] = 2;
-                codeLengths[símbolos[1]] = 2;
-                codeLengths[símbolos[2]] = 2;
-                codeLengths[símbolos[3]] = 2;
-                descanso;
-                caso 5:
-                codeLengths[símbolos[0]] = 1;
-                codeLengths[símbolos[1]] = 2;
-                codeLengths[símbolos[2]] = 3;
-                codeLengths[símbolos[3]] = 3;
-                descanso;
-                defecto:
-                descanso;
+                codeLengths[symbols[0]] = 2;
+                codeLengths[symbols[1]] = 2;
+                codeLengths[symbols[2]] = 2;
+                codeLengths[symbols[3]] = 2;
+                break;
+            case 5:
+                codeLengths[symbols[0]] = 1;
+                codeLengths[symbols[1]] = 2;
+                codeLengths[symbols[2]] = 3;
+                codeLengths[symbols[3]] = 3;
+                break;
+            default:
+                break;
         }
         return buildHuffmanTable(tableGroup, tableIdx, 8, codeLengths, alphabetSizeLimit);
     }
     /**
-     * @param {número} límite de tamaño alfabético
-     * @param {número} saltar
-     * @param {!Int32Array} grupo de tablas
-     * @param {número} tableIdx
-     * @param {!Estado} s
-     * @return {número}
+     * @param {number} alphabetSizeLimit
+     * @param {number} skip
+     * @param {!Int32Array} tableGroup
+     * @param {number} tableIdx
+     * @param {!State} s
+     * @return {number}
      */
     function readComplexHuffmanCode(alphabetSizeLimit, skip, tableGroup, tableIdx, s) {
         let /** @type{!Int32Array} */ codeLengths = new Int32Array(alphabetSizeLimit);
         let /** @type{!Int32Array} */ codeLengthCodeLengths = new Int32Array(18);
-        let /** @type{número} */ espacio = 32;
-        let /** @type{número} */ numCodes = 0;
-        for (let /** @type{número} */ i = saltar; i < 18 && espacio > 0; i++) {
+        let /** @type{number} */ space = 32;
+        let /** @type{number} */ numCodes = 0;
+        for (let /** @type{number} */ i = skip; i < 18 && space > 0; i++) {
             let /** @type{number} */ codeLenIdx = CODE_LENGTH_CODE_ORDER[i];
             if (s.bitOffset >= 16) {
-                s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.acumulador32 >>> 16);
+                s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.accumulator32 >>> 16);
                 s.bitOffset -= 16;
             }
             let /** @type{number} */ p = (s.accumulator32 >>> s.bitOffset) & 15;
-            s.bitOffset += TABLA_FIJA[p] >> 16;
-            let /** @type{número} */ v = FIXED_TABLE[p] & 0xFFFF;
+            s.bitOffset += FIXED_TABLE[p] >> 16;
+            let /** @type{number} */ v = FIXED_TABLE[p] & 0xFFFF;
             codeLengthCodeLengths[codeLenIdx] = v;
-            si(v != 0) {
-                espacio -= (32 >> v);
-                numCodigos++;
+            if (v != 0) {
+                space -= (32 >> v);
+                numCodes++;
             }
         }
-        if (espacio != 0 && numCodes != 1) {
-            throw "Histograma de código Huffman corrupto";
+        if (space != 0 && numCodes != 1) {
+            throw "Corrupted Huffman code histogram";
         }
         readHuffmanCodeLengths(codeLengthCodeLengths, alphabetSizeLimit, codeLengths, s);
         return buildHuffmanTable(tableGroup, tableIdx, 8, codeLengths, alphabetSizeLimit);
     }
     /**
-     * @param {número} tamaño alfabético máx.
-     * @param {número} límite de tamaño alfabético
-     * @param {!Int32Array} grupo de tablas
-     * @param {número} tableIdx
-     * @param {!Estado} s
-     * @return {número}
+     * @param {number} alphabetSizeMax
+     * @param {number} alphabetSizeLimit
+     * @param {!Int32Array} tableGroup
+     * @param {number} tableIdx
+     * @param {!State} s
+     * @return {number}
      */
     function readHuffmanCode(alphabetSizeMax, alphabetSizeLimit, tableGroup, tableIdx, s) {
         if (s.halfOffset > 2030) {
             doReadMoreInput(s);
         }
         if (s.bitOffset >= 16) {
-            s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.acumulador32 >>> 16);
+            s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.accumulator32 >>> 16);
             s.bitOffset -= 16;
         }
         let /** @type{number} */ simpleCodeOrSkip = readFewBits(s, 2);
         if (simpleCodeOrSkip == 1) {
             return readSimpleHuffmanCode(alphabetSizeMax, alphabetSizeLimit, tableGroup, tableIdx, s);
-        } demás {
+        } else {
             return readComplexHuffmanCode(alphabetSizeLimit, simpleCodeOrSkip, tableGroup, tableIdx, s);
         }
     }
     /**
-     * @param {número} contextMapSize
-     * @param {!Int8Array} mapa de contexto
-     * @param {!Estado} s
-     * @return {número}
+     * @param {number} contextMapSize
+     * @param {!Int8Array} contextMap
+     * @param {!State} s
+     * @return {number}
      */
-    función decodeContextMap(contextMapSize, contextMap, s) {
+    function decodeContextMap(contextMapSize, contextMap, s) {
         if (s.halfOffset > 2030) {
             doReadMoreInput(s);
         }
         let /** @type{number} */ numTrees = decodeVarLenUnsignedByte(s) + 1;
-        if (númÁrboles == 1) {
+        if (numTrees == 1) {
             contextMap.fill(0, 0, contextMapSize);
-            volver numArboles;
+            return numTrees;
         }
         if (s.bitOffset >= 16) {
-            s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.acumulador32 >>> 16);
+            s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.accumulator32 >>> 16);
             s.bitOffset -= 16;
         }
         let /** @type{number} */ useRleForZeros = readFewBits(s, 1);
-        let /** @type{número} */ maxRunLengthPrefix = 0;
+        let /** @type{number} */ maxRunLengthPrefix = 0;
         if (useRleForZeros != 0) {
-            maxRunLengthPrefix = leerPocosBits(s, 4) + 1;
+            maxRunLengthPrefix = readFewBits(s, 4) + 1;
         }
         let /** @type{number} */ alphabetSize = numTrees + maxRunLengthPrefix;
         let /** @type{number} */ tableSize = MAX_HUFFMAN_TABLE_SIZE[(alphabetSize + 31) >> 5];
         let /** @type{!Int32Array} */ table = new Int32Array(tableSize + 1);
-        let /** @type{número} */ tableIdx = table.length - 1;
+        let /** @type{number} */ tableIdx = table.length - 1;
         readHuffmanCode(alphabetSize, alphabetSize, table, tableIdx, s);
         for (let /** @type{number} */ i = 0; i < contextMapSize;) {
             if (s.halfOffset > 2030) {
                 doReadMoreInput(s);
             }
             if (s.bitOffset >= 16) {
-                s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.acumulador32 >>> 16);
+                s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.accumulator32 >>> 16);
                 s.bitOffset -= 16;
             }
             let /** @type{number} */ code = readSymbol(table, tableIdx, s);
@@ -646,31 +646,31 @@ let makeBrotliDecode = () => {
             }
         }
         if (s.bitOffset >= 16) {
-            s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.acumulador32 >>> 16);
+            s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.accumulator32 >>> 16);
             s.bitOffset -= 16;
         }
-        if (leerPocosBits(s, 1) == 1) {
+        if (readFewBits(s, 1) == 1) {
             inverseMoveToFrontTransform(contextMap, contextMapSize);
         }
-        volver numArboles;
+        return numTrees;
     }
     /**
-     * @param {!Estado} s
-     * @param {número} tipo de árbol
-     * @param {número} numBlockTypes
-     * @return {número}
+     * @param {!State} s
+     * @param {number} treeType
+     * @param {number} numBlockTypes
+     * @return {number}
      */
     function decodeBlockTypeAndLength(s, treeType, numBlockTypes) {
         let /** @type{!Int32Array} */ ringBuffers = s.rings;
         let /** @type{number} */ offset = 4 + treeType * 2;
         if (s.bitOffset >= 16) {
-            s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.acumulador32 >>> 16);
+            s.accumulator32 = (s.shortBuffer[s.halfOffset++] << 16) | (s.accumulator32 >>> 16);
             s.bitOffset -= 16;
         }
-        let /** @type{número} */ blockType = readSymbol(s.blockTrees, 2 * treeType, s);
+        let /** @type{number} */ blockType = readSymbol(s.blockTrees, 2 * treeType, s);
         let /** @type{number} */ result = readBlockLength(s.blockTrees, 2 * treeType + 1, s);
-        si(tipo de bloque == 1) {
-            blockType = ringBuffers[desplazamiento + 1] + 1;
+        if (blockType == 1) {
+            blockType = ringBuffers[offset + 1] + 1;
         } else if (blockType == 0) {
             blockType = ringBuffers[offset];
         } else {
@@ -700,53 +700,53 @@ let makeBrotliDecode = () => {
      * @param {!State} s
      * @return {void}
      */
-    función decodeCommandBlockSwitch(s) {
+    function decodeCommandBlockSwitch(s) {
         s.commandBlockLength = decodeBlockTypeAndLength(s, 1, s.numCommandBlockTypes);
         s.commandTreeIdx = s.rings[7];
     }
     /**
-     * @param {!Estado} s
-     * @return {vacío}
+     * @param {!State} s
+     * @return {void}
      */
-    función decodeDistanceBlockSwitch(s) {
+    function decodeDistanceBlockSwitch(s) {
         s.distanceBlockLength = decodeBlockTypeAndLength(s, 2, s.numDistanceBlockTypes);
         s.distContextMapSlice = s.rings[9] << 2;
     }
     /**
-     * @param {!Estado} s
-     * @return {vacío}
+     * @param {!State} s
+     * @return {void}
      */
-    function mayRealocateRingBuffer(s) {
+    function maybeReallocateRingBuffer(s) {
         let /** @type{number} */ newSize = s.maxRingBufferSize;
-        if (nuevoTamaño > s.expectedTotalSize) {
+        if (newSize > s.expectedTotalSize) {
             let /** @type{number} */ minimalNewSize = s.expectedTotalSize;
-            while ((nuevoTamaño >> 1) > mínimoNuevoTamaño) {
-                nuevoTamaño >>= 1;
+            while ((newSize >> 1) > minimalNewSize) {
+                newSize >>= 1;
             }
             if ((s.inputEnd == 0) && newSize < 16384 && s.maxRingBufferSize >= 16384) {
-                nuevoTamaño = 16384;
+                newSize = 16384;
             }
         }
-        if (nuevoTamaño <= s.ringBufferSize) {
-            regreso;
+        if (newSize <= s.ringBufferSize) {
+            return;
         }
-        let /** @type{número} */ ringBufferSizeWithSlack = newSize + 37;
+        let /** @type{number} */ ringBufferSizeWithSlack = newSize + 37;
         let /** @type{!Int8Array} */ newBuffer = new Int8Array(ringBufferSizeWithSlack);
-        if (s.ringBuffer.longitud != 0) {
+        if (s.ringBuffer.length != 0) {
             newBuffer.set(s.ringBuffer.subarray(0, 0 + s.ringBufferSize), 0);
         }
         s.ringBuffer = newBuffer;
         s.ringBufferSize = newSize;
     }
     /**
-     * @param {!Estado} s
-     * @return {vacío}
+     * @param {!State} s
+     * @return {void}
      */
-    función leerNextMetablockHeader(s) {
+    function readNextMetablockHeader(s) {
         if (s.inputEnd != 0) {
             s.nextRunningState = 10;
             s.runningState = 12;
-            regreso;
+            return;
         }
         s.literalTreeGroup = new Int32Array(0);
         s.commandTreeGroup = new Int32Array(0);
@@ -756,52 +756,52 @@ let makeBrotliDecode = () => {
         }
         decodeMetaBlockLength(s);
         if ((s.metaBlockLength == 0) && (s.isMetadata == 0)) {
-            regreso;
+            return;
         }
         if ((s.isUncompressed != 0) || (s.isMetadata != 0)) {
-            salto al límite de byte(s);
+            jumpToByteBoundary(s);
             s.runningState = (s.isMetadata != 0) ? 5 : 6;
-        } demás {
+        } else {
             s.runningState = 3;
         }
         if (s.isMetadata != 0) {
-            regreso;
+            return;
         }
         s.expectedTotalSize += s.metaBlockLength;
         if (s.expectedTotalSize > 1 << 30) {
             s.expectedTotalSize = 1 << 30;
         }
         if (s.ringBufferSize < s.maxRingBufferSize) {
-            quizásReasignarRingBuffer(s);
+            maybeReallocateRingBuffer(s);
         }
     }
     /**
-     * @param {!Estado} s
-     * @param {número} tipo de árbol
-     * @param {número} numBlockTypes
-     * @return {número}
+     * @param {!State} s
+     * @param {number} treeType
+     * @param {number} numBlockTypes
+     * @return {number}
      */
     function readMetablockPartition(s, treeType, numBlockTypes) {
         let /** @type{number} */ offset = s.blockTrees[2 * treeType];
-        si(númTiposBloque <= 1) {
-            s.blockTrees[2 * treeType + 1] = desplazamiento;
-            s.blockTrees[2 * treeType + 2] = desplazamiento;
-            devuelve 1 << 28;
+        if (numBlockTypes <= 1) {
+            s.blockTrees[2 * treeType + 1] = offset;
+            s.blockTrees[2 * treeType + 2] = offset;
+            return 1 << 28;
         }
-        let /** @type{número} */ blockTypeAlphabetSize = numBlockTypes + 2;
+        let /** @type{number} */ blockTypeAlphabetSize = numBlockTypes + 2;
         offset += readHuffmanCode(blockTypeAlphabetSize, blockTypeAlphabetSize, s.blockTrees, 2 * treeType, s);
-        s.blockTrees[2 * treeType + 1] = desplazamiento;
+        s.blockTrees[2 * treeType + 1] = offset;
         let /** @type{number} */ blockLengthAlphabetSize = 26;
         offset += readHuffmanCode(blockLengthAlphabetSize, blockLengthAlphabetSize, s.blockTrees, 2 * treeType + 1, s);
-        s.blockTrees[2 * treeType + 2] = desplazamiento;
+        s.blockTrees[2 * treeType + 2] = offset;
         return readBlockLength(s.blockTrees, 2 * treeType + 1, s);
     }
     /**
-     * @param {!Estado} s
-     * @param {número} límite de tamaño alfabético
-     * @return {vacío}
+     * @param {!State} s
+     * @param {number} alphabetSizeLimit
+     * @return {void}
      */
-    function calcularDistanceLut(s, alphabetSizeLimit) {
+    function calculateDistanceLut(s, alphabetSizeLimit) {
         let /** @type{!Int8Array} */ distExtraBits = s.distExtraBits;
         let /** @type{!Int32Array} */ distOffset = s.distOffset;
         let /** @type{number} */ npostfix = s.distancePostfixBits;
