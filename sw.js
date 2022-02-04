@@ -17,7 +17,7 @@ const APP_SHELL = [
     '/PokedexPublish/css/open-iconic/font/css/open-iconic-bootstrap.min.css',
     '/PokedexPublish/favicon.ico',
     '/PokedexPublish/offLine.html',
-    '/PokedexPublish/js/decode.js',
+    /*'/PokedexPublish/js/decode.js',*/
     '/PokedexPublish/js/app.js',
     '/PokedexPublish/js/sw-utils.js'
 ];
